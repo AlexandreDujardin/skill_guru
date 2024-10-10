@@ -57,14 +57,15 @@ export async function logout() {
 export async function loginWithGoogle() {
   const supabase = createClient()
 
-  const { error } = await supabase.auth.signInWithOAuth({
-    provider: 'google',
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider : 'google',
+    options: {
+      redirectTo: 'http://localhost:3000/auth/callback',
+    },
   })
-
-  if (error) {
-    redirect('/error')
+  
+  if (data.url) {
+    redirect('/private')
   }
-
-  revalidatePath('/')
-  redirect('/private')
+  
 }
