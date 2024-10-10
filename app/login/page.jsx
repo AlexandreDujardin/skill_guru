@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react';
-import { login, signup } from './action';
+import { login, signup, loginWithGoogle } from './action';
 
 export default function LoginPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -64,6 +64,16 @@ export default function LoginPage() {
             </button>
           </div>
         </form>
+
+        <div className="mt-4 text-center">
+          <button
+            type="button"
+            onClick={() => loginWithGoogle()}
+            className="w-full mt-4 bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+          >
+            Sign in with Google
+          </button>
+        </div>
 
         <div className="mt-4 text-center">
           <button

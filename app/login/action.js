@@ -8,8 +8,6 @@ import { createClient } from '@/utils/supabase/server'
 export async function login(formData) {
   const supabase = createClient()
 
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
   const data = {
     email: formData.get('email'),
     password: formData.get('password'),
@@ -22,14 +20,12 @@ export async function login(formData) {
   }
 
   revalidatePath('/', 'layout')
-  redirect('/')
+  redirect('/private')
 }
 
 export async function signup(formData) {
   const supabase = createClient()
 
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
   const data = {
     email: formData.get('email'),
     password: formData.get('password'),
@@ -42,5 +38,33 @@ export async function signup(formData) {
   }
 
   revalidatePath('/', 'layout')
-  redirect('/')
+  redirect('/private')
+}
+
+export async function logout() {
+  const supabase = createClient()
+
+  const { error } = await supabase.auth.signOut()
+
+  if (error) {
+    redirect('/error')
+  }
+
+  redirect('/login')
+}
+
+
+export async function loginWithGoogle() {
+  const supabase = createClient()
+
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+  })
+
+  if (error) {
+    redirect('/error')
+  }
+
+  revalidatePath('/')
+  redirect('/private')
 }
