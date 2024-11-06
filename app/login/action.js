@@ -38,7 +38,7 @@ export async function signup(formData) {
   }
 
   revalidatePath('/', 'layout')
-  redirect('/private')
+  redirect('/')
 }
 
 export async function logout() {
@@ -53,19 +53,20 @@ export async function logout() {
   redirect('/login')
 }
 
-
-export async function loginWithGoogle() {
+export async function handleGoogleLogin() {
   const supabase = createClient()
-
   const { data, error } = await supabase.auth.signInWithOAuth({
-    provider : 'google',
+    provider: 'google',
     options: {
-      redirectTo: 'http://localhost:3000/auth/callback',
+      redirectTo: 'http://example.com/auth/callback',
+      queryParams: {
+        access_type: 'offline',
+        prompt: 'consent',
+      },
     },
   })
-  
+
   if (data.url) {
-    redirect('/private')
+    redirect(data.url) // use the redirect API for your server framework
   }
-  
 }

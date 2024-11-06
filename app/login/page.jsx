@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react';
-import { login, signup, loginWithGoogle } from './action';
+import { login, signup, handleGoogleLogin } from './action';
 
 export default function LoginPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -68,11 +68,11 @@ export default function LoginPage() {
         <form>
           <div className="mt-4 text-center">
             <button
-              formAction={loginWithGoogle}
-                  type="submit"
-                  className="w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
-                >
-                  Sign in with Google
+              formAction={handleGoogleLogin}
+              type="submit"
+              className="w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+            >
+            Sign in with Google
             </button>
           </div>
         </form>
