@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_b3ff731ce61ec60"
   },
   "dependencies": {
     "@nextui-org/switch": "^2.0.33",
@@ -23,7 +26,17 @@
     "standard": "^17.1.2"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "3.2.2",
+    "@storybook/addon-essentials": "8.4.2",
+    "@storybook/addon-interactions": "8.4.2",
+    "@storybook/addon-onboarding": "8.4.2",
+    "@storybook/blocks": "8.4.2",
+    "@storybook/nextjs": "8.4.2",
+    "@storybook/react": "8.4.2",
+    "@storybook/test": "8.4.2",
+    "chromatic": "^11.16.5",
     "postcss": "^8",
+    "storybook": "8.4.2",
     "tailwindcss": "^3.4.1"
   }
 }
